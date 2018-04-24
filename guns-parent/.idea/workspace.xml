@@ -249,16 +249,15 @@
       <updated>1524464748619</updated>
       <workItem from="1524464749851" duration="410000" />
       <workItem from="1524465265377" duration="17867000" />
-      <workItem from="1524532594918" duration="5887000" />
+      <workItem from="1524532594918" duration="6215000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24164000" />
+    <option name="totallyTimeSpent" value="24492000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="121" y="22" width="1669" height="1000" extended-state="1" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -277,12 +276,12 @@
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Run Dashboard" visible="true" weight="0.329849" />
+      <window_info active="true" anchor="bottom" id="Run Dashboard" visible="true" weight="0.329849" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32946634" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4982699" visible="true" weight="0.25605968" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4982699" visible="true" weight="0.25605968" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
