@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.OrderItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.OrderItem">
+        <id column="id" property="id" />
+        <result column="enterprise_code" property="enterpriseCode" />
+        <result column="order_no" property="orderNo" />
+        <result column="customer_code" property="customerCode" />
+        <result column="goods_code" property="goodsCode" />
+        <result column="goods_name" property="goodsName" />
+        <result column="preconsign_quantity" property="preconsignQuantity" />
+        <result column="receipt_quantity" property="receiptQuantity" />
+        <result column="unit_code" property="unitCode" />
+        <result column="unit_name" property="unitName" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, enterprise_code AS enterpriseCode, order_no AS orderNo, customer_code AS customerCode, goods_code AS goodsCode, goods_name AS goodsName, preconsign_quantity AS preconsignQuantity, receipt_quantity AS receiptQuantity, unit_code AS unitCode, unit_name AS unitName, remark, create_time AS createTime, update_time AS updateTime
+    </sql>
+
+    <select id="selectMergeOrderListByDate" resultType="com.stylefeng.guns.modular.system.view.OrderItemView">
+         SELECT enterpriseCode, customerCode, orderMergeType, preconsignDate, goodsCode, goodsName
+            , SUM(T.preconsignQuantity) as preconsignQuantitySum
+            , SUM(T.totalAmt) AS  totalAmtSum
+        FROM (
+            SELECT a.enterprise_code AS enterpriseCode, a.order_no AS orderNo, a.order_no AS trackingNo, a.customer_code AS customerCode, a.preconsign_date AS preconsignDate
+                , a.order_type AS orderType
+                , CASE
+                    WHEN a.order_type = 1 THEN '分货订单'
+                    WHEN a.order_type = 2 THEN '补货订单'
+                    WHEN a.order_type = 3 THEN '加急订单'
+                    ELSE '--'
+                END AS goodsTag
+                , CASE
+                    WHEN a.order_type = 1
+                    OR a.order_type = 2 THEN '合并类别-分货补货'
+                    WHEN a.order_type = 3 THEN '合并类别-加急'
+                    ELSE '合并类别-其他'
+                END AS orderMergeType, a.goods_type_quantity AS goodsTypeQuantity, a.total_amt AS totalAmt, a.order_status AS orderStatus
+                , CASE
+                    WHEN a.order_status = 1 THEN '已发货'
+                    WHEN a.order_status = 2 THEN '已收货'
+                    ELSE '--'
+                END AS orderStatusName, b.goods_code AS goodsCode, b.goods_name AS goodsName, b.preconsign_quantity AS preconsignQuantity, b.receipt_quantity AS receiptQuantity
+                , b.unit_code AS unitCode, b.unit_name AS unitName
+            FROM sal_order_head a
+                LEFT JOIN sal_order_item b
+                ON a.enterprise_code = b.enterprise_code
+                    AND a.order_no = b.order_no
+            <where>
+                <if test="preconsignDate != null and preconsignDate != ''">
+                    AND a.preconsign_date = #{preconsignDate}
+                </if>
+                <if test="customerCode != null and customerCode != ''">
+                    AND a.customer_code = #{customerCode}
+                </if>
+                <if test="orderMergeType != null and orderMergeType != ''">
+                    <if test="orderMergeType == '合并类别-分货补货'">
+                        AND (a.order_type = 1 or a.order_type = 2)
+                    </if>
+                    <if test="orderMergeType == '合并类别-加急'">
+                        AND a.order_type = 3
+                    </if>
+                </if>
+                <if test="enterpriseCode != null and enterpriseCode != ''">
+                    AND a.enterprise_code = #{enterpriseCode}
+                </if>
+            </where>
+        ) T
+        GROUP BY enterpriseCode, customerCode, orderMergeType, preconsignDate, goodsCode, goodsName
+        ORDER BY orderMergeType, preconsignDate, enterpriseCode, customerCode
+    </select>
+
+</mapper>

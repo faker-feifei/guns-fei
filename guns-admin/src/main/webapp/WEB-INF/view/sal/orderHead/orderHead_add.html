@@ -1,0 +1,42 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键-订单主表" underline="true"/>
+                            <#input id="enterpriseCode" name="企业代码" underline="true"/>
+                            <#input id="orderNo" name="要货单号" underline="true"/>
+                            <#input id="trackingNo" name="物流单号" underline="true"/>
+                            <#input id="customerCode" name="客户代码" underline="true"/>
+                            <#input id="orgCode" name="组织机构代码(管理组织机构)" underline="true"/>
+                            <#input id="orderType" name="订单类型（1:分货订单，2:补货订单，3:加急订单）" underline="true"/>
+                            <#input id="orderStatus" name="订单状态(1-已发货，2-已收货)"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="goodsTypeQuantity" name="商品种类数量" underline="true"/>
+                            <#input id="totalAmt" name="订单总金额" underline="true"/>
+                            <#input id="preconsignDate" name="要求发货日期" underline="true"/>
+                            <#input id="remark" name="备注" underline="true"/>
+                            <#input id="createTime" name="创建时间" underline="true"/>
+                            <#input id="updateTime" name="更新时间" underline="true"/>
+                            <#input id="enableFlag" name="是否可用 1：可用" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="OrderHeadInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="OrderHeadInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/sal/orderHead/orderHead_info.js"></script>
+@}

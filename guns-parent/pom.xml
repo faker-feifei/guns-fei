@@ -178,6 +178,16 @@
                 <artifactId>hutool-http</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+
+
+            <!--页面热部署-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-devtools</artifactId>
+                <optional>true</optional>
+                <scope>true</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -191,6 +201,9 @@
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
+                        <encoding>UTF-8</encoding>
+                        <!--热部署-->
+                        <fork>true</fork>
                     </configuration>
                 </plugin>
                 <plugin>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.OrderHeadMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.OrderHead">
+        <id column="id" property="id" />
+        <result column="enterprise_code" property="enterpriseCode" />
+        <result column="order_no" property="orderNo" />
+        <result column="tracking_no" property="trackingNo" />
+        <result column="customer_code" property="customerCode" />
+        <result column="org_code" property="orgCode" />
+        <result column="order_type" property="orderType" />
+        <result column="order_status" property="orderStatus" />
+        <result column="goods_type_quantity" property="goodsTypeQuantity" />
+        <result column="total_amt" property="totalAmt" />
+        <result column="preconsign_date" property="preconsignDate" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="enable_flag" property="enableFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, enterprise_code AS enterpriseCode, order_no AS orderNo, tracking_no AS trackingNo, customer_code AS customerCode, org_code AS orgCode, order_type AS orderType, order_status AS orderStatus, goods_type_quantity AS goodsTypeQuantity, total_amt AS totalAmt, preconsign_date AS preconsignDate, remark, create_time AS createTime, update_time AS updateTime, enable_flag AS enableFlag
+    </sql>
+
+</mapper>

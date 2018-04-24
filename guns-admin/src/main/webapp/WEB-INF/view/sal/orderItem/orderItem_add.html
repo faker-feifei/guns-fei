@@ -1,0 +1,40 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键-订单详情表" underline="true"/>
+                            <#input id="enterpriseCode" name="企业代码" underline="true"/>
+                            <#input id="orderNo" name="要货单号" underline="true"/>
+                            <#input id="customerCode" name="" underline="true"/>
+                            <#input id="goodsCode" name="商品编码" underline="true"/>
+                            <#input id="goodsName" name="商品名称" underline="true"/>
+                            <#input id="preconsignQuantity" name="订货数量"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="receiptQuantity" name="收货数量" underline="true"/>
+                            <#input id="unitCode" name="计量单位编号" underline="true"/>
+                            <#input id="unitName" name="计量单位名称" underline="true"/>
+                            <#input id="remark" name="备注" underline="true"/>
+                            <#input id="createTime" name="创建时间" underline="true"/>
+                            <#input id="updateTime" name="更新时间" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="OrderItemInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="OrderItemInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/sal/orderItem/orderItem_info.js"></script>
+@}
